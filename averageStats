@@ -1,0 +1,21 @@
+============================================================
+                            STATS                           
+============================================================
+Testing tree shake for 14 fonts: 
+
+Average size reduction for whole fonts: 2.86%
+Average size reduction for subsetted fonts: 5.89%
+
+============================================================
+                        SAMPLE RESULT                       
+============================================================
+NotoSans-Regular.ttf Analysis over
+https://en.wikipedia.org/
+
+Original font file size:   306,788                                  
+Size after tree-shaking:   305,236    (Reduction of 0.51%)          
+
+Subsetted font file size:  20,172                                   
+Size after tree-shaking:   18,608     (Reduction of 7.75%)          
+
+
