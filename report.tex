@@ -239,16 +239,38 @@ considerably reduced after subsetting, since the tables related to
 glyphs usually take the major part of whole fonts.
 
 For detailed information about how much each table takes in the Google
-Noto Sans font files, check Appendix B.
+Noto Sans font files, as well as how much tables were reduced after
+subsetting, check Appendix B.
 
 \clearpage
 \begin{appendices}
-\section{Reduction Statistics}
+\section{Tree Shaking Statistics}
 
 \verbatiminput{generalStats}
 
-\section{Tables Statatistics}
+\section{Table Statatistics}
 
+To understand better how much the subsetting technique would impact on
+fonts in the wild, we inspected the size of each table before and after
+subsetting.
+
+To get information about the size of the tables, we used the TTX tool
+from the fonttools project, to dump the font file into a XML file. With
+a XML file, we were able to count the number of bytes of each table.
+
+Note that, the information we get about sizes are not exact. The size
+between the XML and the original font file may differ, however, as the
+results show, this difference is usually reasonably low. Moreover, we
+are interested in understanding the relative size of a table when
+compared to the other tables in the font. So, even though we are not
+getting precise absolute values from a XML file, it is still enough for
+understanding how tables compare between each other.
+
+To make sure the glyphs would be rendered the same way as the original
+fonts, we used the compare script to check for equality between original
+and subsetted for the set of fetched glyphs. 
+
+\verbatiminput{subsetStats}
 
 \end{appendices}
 

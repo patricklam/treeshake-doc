@@ -1,0 +1,476 @@
+Testing NotoSansSinhala-Regular.ttf over https://si.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansSinhala-Regular.ttf Analysis
+New size: 
+ttf: 264212 => 207652      (Reduction of 21.41%)
+ttx: 3259500 => 2672106    (Reduction of 18.02%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            1,805,317    58.27    1,480,177    58.18    (reduction of 18.01%)
+glyf(assemb)    861,001      27.79    708,048      27.83    (reduction of 17.76%)
+GPOS            169,433      5.47     157,509      6.19     (reduction of 7.04%)
+GSUB            98,089       3.17     82,455       3.24     (reduction of 15.94%)
+fpgm            32,806       1.06     32,806       1.29                 
+hmtx            32,349       1.04     24,805       0.98     (reduction of 23.32%)
+GDEF            29,775       0.96     23,988       0.94     (reduction of 19.44%)
+GlyphOrder      26,810       0.87     20,353       0.80     (reduction of 24.08%)
+post            22,723       0.73     285          0.01     (reduction of 98.75%)
+cmap            10,635       0.34     6,236        0.25     (reduction of 41.36%)
+prep            1,948        0.06     1,948        0.08                 
+name            1,866        0.06     218          0.01     (reduction of 88.32%)
+OS_2            1,752        0.06     1,752        0.07                 
+cvt             1,543        0.05     1,543        0.06                 
+head            660          0.02     660          0.03                 
+maxp            579          0.02     579          0.02                 
+hhea            529          0.02     529          0.02                 
+gasp            116          0.00     116          0.00                 
+loca            65           0.00     65           0.00                 
+
+
+Testing NotoKufiArabic-Regular.ttf over https://ar.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoKufiArabic-Regular.ttf Analysis
+New size: 
+ttf: 80048 => 24524        (Reduction of 69.36%)
+ttx: 1177580 => 384482     (Reduction of 67.35%)
+
+Table           Size         Total%   New Size     Total%               
+GPOS            343,061      34.77    97,854       29.19    (reduction of 71.48%)
+glyf            243,463      24.67    101,952      30.42    (reduction of 58.12%)
+glyf(assemb)    153,857      15.59    58,340       17.41    (reduction of 62.08%)
+hmtx            39,519       4.01     10,870       3.24     (reduction of 72.49%)
+cmap            38,974       3.95     4,307        1.28     (reduction of 88.95%)
+GSUB            37,913       3.84     11,784       3.52     (reduction of 68.92%)
+GDEF            36,396       3.69     8,580        2.56     (reduction of 76.43%)
+GlyphOrder      32,382       3.28     8,816        2.63     (reduction of 72.77%)
+post            27,042       2.74     285          0.09     (reduction of 98.95%)
+fpgm            25,068       2.54     25,068       7.48                 
+cvt             2,283        0.23     2,283        0.68                 
+name            1,905        0.19     217          0.06     (reduction of 88.61%)
+OS_2            1,754        0.18     1,754        0.52                 
+prep            1,071        0.11     1,071        0.32                 
+head            660          0.07     659          0.20     (reduction of 0.15%)
+maxp            579          0.06     579          0.17                 
+hhea            530          0.05     530          0.16                 
+gasp            175          0.02     175          0.05                 
+loca            65           0.01     65           0.02                 
+
+
+Testing NotoSansTelugu-Regular.ttf over https://te.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansTelugu-Regular.ttf Analysis
+New size: 
+ttf: 168584 => 130036      (Reduction of 22.87%)
+ttx: 2398052 => 1952001    (Reduction of 18.60%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            936,282      42.72    750,204      41.81    (reduction of 19.87%)
+glyf(assemb)    484,816      22.12    384,971      21.45    (reduction of 20.59%)
+GPOS            383,757      17.51    342,217      19.07    (reduction of 10.82%)
+GSUB            150,588      6.87     122,535      6.83     (reduction of 18.63%)
+GDEF            113,282      5.17     94,572       5.27     (reduction of 16.52%)
+hmtx            38,437       1.75     29,273       1.63     (reduction of 23.84%)
+fpgm            31,662       1.44     31,662       1.76                 
+GlyphOrder      31,519       1.44     24,013       1.34     (reduction of 23.81%)
+cmap            10,482       0.48     5,497        0.31     (reduction of 47.56%)
+prep            2,954        0.13     2,954        0.16                 
+cvt             2,295        0.10     2,295        0.13                 
+name            1,862        0.08     217          0.01     (reduction of 88.35%)
+OS_2            1,752        0.08     1,752        0.10                 
+head            660          0.03     660          0.04                 
+maxp            580          0.03     580          0.03                 
+hhea            530          0.02     530          0.03                 
+post            285          0.01     285          0.02                 
+gasp            116          0.01     116          0.01                 
+loca            65           0.00     65           0.00                 
+
+
+Testing NotoSansArmenian-Regular.ttf over https://hy.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansArmenian-Regular.ttf Analysis
+New size: 
+ttf: 22972 => 19340        (Reduction of 15.81%)
+ttx: 393438 => 337827      (Reduction of 14.13%)
+
+Table           Size         Total%   New Size     Total%               
+GPOS            151,913      40.66    127,425      39.66    (reduction of 16.12%)
+glyf            100,360      26.86    86,651       26.97    (reduction of 13.66%)
+glyf(assemb)    60,657       16.23    52,511       16.34    (reduction of 13.43%)
+fpgm            24,859       6.65     24,859       7.74                 
+cmap            7,372        1.97     5,622        1.75     (reduction of 23.74%)
+hmtx            4,759        1.27     3,911        1.22     (reduction of 17.82%)
+GDEF            4,491        1.20     3,606        1.12     (reduction of 19.71%)
+cvt             4,093        1.10     4,093        1.27                 
+GlyphOrder      3,799        1.02     3,127        0.97     (reduction of 17.69%)
+prep            3,702        0.99     3,702        1.15                 
+name            1,956        0.52     219          0.07     (reduction of 88.80%)
+OS_2            1,746        0.47     1,746        0.54                 
+GSUB            1,659        0.44     1,545        0.48     (reduction of 6.87%)
+head            659          0.18     659          0.21                 
+maxp            575          0.15     575          0.18                 
+hhea            526          0.14     526          0.16                 
+post            285          0.08     285          0.09                 
+gasp            175          0.05     175          0.05                 
+loca            65           0.02     65           0.02                 
+
+
+Testing NotoSansHebrew-Regular.ttf over https://he.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansHebrew-Regular.ttf Analysis
+New size: 
+ttf: 26372 => 10148        (Reduction of 61.52%)
+ttx: 716973 => 228720      (Reduction of 68.10%)
+
+Table           Size         Total%   New Size     Total%               
+GPOS            493,082      72.20    119,519      55.69    (reduction of 75.76%)
+glyf            63,315       9.27     19,557       9.11     (reduction of 69.11%)
+glyf(assemb)    36,262       5.31     17,886       8.33     (reduction of 50.68%)
+fpgm            25,068       3.67     25,068       11.68                
+cmap            10,779       1.58     2,396        1.12     (reduction of 77.77%)
+cvt             10,290       1.51     10,290       4.79                 
+GSUB            10,078       1.48     6,303        2.94     (reduction of 37.46%)
+GDEF            7,941        1.16     2,786        1.30     (reduction of 64.92%)
+hmtx            7,490        1.10     2,958        1.38     (reduction of 60.51%)
+GlyphOrder      6,143        0.90     2,427        1.13     (reduction of 60.49%)
+post            5,688        0.83     285          0.13     (reduction of 94.99%)
+name            1,862        0.27     217          0.10     (reduction of 88.35%)
+OS_2            1,755        0.26     1,755        0.82                 
+prep            1,167        0.17     1,167        0.54                 
+head            659          0.10     659          0.31                 
+maxp            578          0.08     577          0.27     (reduction of 0.17%)
+hhea            528          0.08     527          0.25     (reduction of 0.19%)
+gasp            175          0.03     175          0.08                 
+loca            65           0.01     65           0.03                 
+
+
+Testing NotoSansMalayalam-Regular.ttf over https://ml.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansMalayalam-Regular.ttf Analysis
+New size: 
+ttf: 92064 => 69940        (Reduction of 24.03%)
+ttx: 1218155 => 947019     (Reduction of 22.26%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            537,351      47.37    448,715      50.57    (reduction of 16.49%)
+glyf(assemb)    276,466      24.37    227,179      25.60    (reduction of 17.83%)
+GPOS            128,105      11.29    70,898       7.99     (reduction of 44.66%)
+GSUB            99,934       8.81     65,219       7.35     (reduction of 34.74%)
+fpgm            31,662       2.79     31,662       3.57                 
+hmtx            15,756       1.39     11,022       1.24     (reduction of 30.05%)
+GlyphOrder      12,855       1.13     8,977        1.01     (reduction of 30.17%)
+GDEF            11,554       1.02     9,209        1.04     (reduction of 20.30%)
+cmap            11,054       0.97     6,550        0.74     (reduction of 40.75%)
+prep            2,050        0.18     2,050        0.23                 
+name            1,874        0.17     220          0.02     (reduction of 88.26%)
+OS_2            1,752        0.15     1,752        0.20                 
+cvt             1,658        0.15     1,658        0.19                 
+head            660          0.06     660          0.07                 
+maxp            579          0.05     579          0.07                 
+hhea            529          0.05     529          0.06                 
+post            285          0.03     285          0.03                 
+gasp            116          0.01     116          0.01                 
+loca            65           0.01     65           0.01                 
+
+
+Testing NotoSansTamil-Regular.ttf over https://ta.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansTamil-Regular.ttf Analysis
+New size: 
+ttf: 54260 => 37608        (Reduction of 30.69%)
+ttx: 682482 => 472827      (Reduction of 30.72%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            339,295      54.05    235,768      54.01    (reduction of 30.51%)
+glyf(assemb)    174,616      27.82    118,534      27.16    (reduction of 32.12%)
+fpgm            32,360       5.15     32,360       7.41                 
+GSUB            21,329       3.40     16,542       3.79     (reduction of 22.44%)
+GPOS            16,167       2.58     3,140        0.72     (reduction of 80.58%)
+hmtx            10,657       1.70     7,035        1.61     (reduction of 33.99%)
+cmap            9,106        1.45     4,540        1.04     (reduction of 50.14%)
+GlyphOrder      8,590        1.37     5,647        1.29     (reduction of 34.26%)
+GDEF            6,406        1.02     5,329        1.22     (reduction of 16.81%)
+prep            1,897        0.30     1,897        0.43                 
+name            1,858        0.30     216          0.05     (reduction of 88.37%)
+OS_2            1,752        0.28     1,752        0.40                 
+cvt             1,503        0.24     1,503        0.34                 
+head            659          0.10     659          0.15                 
+maxp            580          0.09     580          0.13                 
+hhea            528          0.08     528          0.12                 
+post            285          0.05     285          0.07                 
+gasp            116          0.02     116          0.03                 
+loca            65           0.01     65           0.01                 
+
+
+Testing NotoSansGeorgian-Regular.ttf over https://ka.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansGeorgian-Regular.ttf Analysis
+New size: 
+ttf: 31704 => 10688        (Reduction of 66.29%)
+ttx: 528923 => 149610      (Reduction of 71.71%)
+
+Table           Size         Total%   New Size     Total%               
+GPOS            185,754      36.93    20,062       14.11    (reduction of 89.20%)
+glyf            163,529      32.51    54,689       38.47    (reduction of 66.56%)
+glyf(assemb)    85,919       17.08    25,353       17.83    (reduction of 70.49%)
+fpgm            25,068       4.98     25,068       17.63                
+cmap            9,512        1.89     2,428        1.71     (reduction of 74.47%)
+hmtx            6,169        1.23     1,656        1.16     (reduction of 73.16%)
+GDEF            5,765        1.15     1,564        1.10     (reduction of 72.87%)
+GlyphOrder      4,926        0.98     1,361        0.96     (reduction of 72.37%)
+post            4,695        0.93     285          0.20     (reduction of 93.93%)
+cvt             3,560        0.71     3,560        2.50                 
+prep            1,955        0.39     1,955        1.38                 
+name            1,870        0.37     219          0.15     (reduction of 88.29%)
+OS_2            1,752        0.35     1,752        1.23                 
+head            659          0.13     659          0.46                 
+maxp            575          0.11     574          0.40     (reduction of 0.17%)
+hhea            526          0.10     525          0.37     (reduction of 0.19%)
+GSUB            514          0.10     222          0.16     (reduction of 56.81%)
+gasp            175          0.03     175          0.12                 
+loca            65           0.01     65           0.05                 
+
+
+Testing NotoSans-Regular.ttf over https://en.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSans-Regular.ttf Analysis
+New size: 
+ttf: 306788 => 20172       (Reduction of 93.42%)
+ttx: 7781284 => 313151     (Reduction of 95.98%)
+
+Table           Size         Total%   New Size     Total%               
+GPOS            4,483,062    62.13    83,817       29.46    (reduction of 98.13%)
+glyf            1,196,699    16.58    80,774       28.39    (reduction of 93.25%)
+glyf(assemb)    974,032      13.50    58,255       20.47    (reduction of 94.02%)
+cmap            179,760      2.49     8,141        2.86     (reduction of 95.47%)
+hmtx            116,642      1.62     6,315        2.22     (reduction of 94.59%)
+GDEF            111,744      1.55     4,986        1.75     (reduction of 95.54%)
+GlyphOrder      95,948       1.33     5,006        1.76     (reduction of 94.78%)
+fpgm            25,068       0.35     25,068       8.81                 
+GSUB            19,080       0.26     222          0.08     (reduction of 98.84%)
+cvt             4,092        0.06     4,092        1.44                 
+prep            3,594        0.05     3,594        1.26                 
+name            1,921        0.03     210          0.07     (reduction of 89.07%)
+OS_2            1,755        0.02     1,755        0.62                 
+head            660          0.01     660          0.23                 
+maxp            579          0.01     578          0.20     (reduction of 0.17%)
+hhea            531          0.01     530          0.19     (reduction of 0.19%)
+post            285          0.00     285          0.10                 
+gasp            175          0.00     175          0.06                 
+loca            65           0.00     65           0.02                 
+
+
+Testing NotoSansBengali-Regular.ttf over https://bn.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansBengali-Regular.ttf Analysis
+New size: 
+ttf: 176072 => 162272      (Reduction of 7.84%)
+ttx: 2188874 => 2050077    (Reduction of 6.34%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            935,428      46.22    882,826      46.38    (reduction of 5.62%)
+glyf(assemb)    654,550      32.34    612,062      32.16    (reduction of 6.49%)
+GPOS            143,384      7.08     134,152      7.05     (reduction of 6.44%)
+GSUB            109,496      5.41     108,443      5.70     (reduction of 0.96%)
+GDEF            76,137       3.76     73,299       3.85     (reduction of 3.73%)
+fpgm            31,662       1.56     31,662       1.66                 
+hmtx            29,336       1.45     25,809       1.36     (reduction of 12.02%)
+GlyphOrder      23,752       1.17     20,900       1.10     (reduction of 12.01%)
+cmap            10,426       0.52     6,042        0.32     (reduction of 42.05%)
+cvt             2,003        0.10     2,003        0.11                 
+prep            1,967        0.10     1,967        0.10                 
+name            1,914        0.09     218          0.01     (reduction of 88.61%)
+OS_2            1,752        0.09     1,752        0.09                 
+head            660          0.03     660          0.03                 
+maxp            580          0.03     580          0.03                 
+hhea            529          0.03     529          0.03                 
+post            285          0.01     285          0.01                 
+gasp            116          0.01     116          0.01                 
+loca            65           0.00     65           0.00                 
+
+
+Testing NotoSansKhmer-Regular.ttf over https://km.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansKhmer-Regular.ttf Analysis
+New size: 
+ttf: 48648 => 30200        (Reduction of 37.92%)
+ttx: 668641 => 450640      (Reduction of 32.60%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            350,115      57.19    203,658      49.17    (reduction of 41.83%)
+glyf(assemb)    101,991      16.66    81,241       19.61    (reduction of 20.34%)
+GSUB            58,476       9.55     58,164       14.04    (reduction of 0.53%)
+fpgm            22,868       3.74     22,868       5.52                 
+cmap            13,445       2.20     7,084        1.71     (reduction of 47.31%)
+hmtx            13,163       2.15     8,575        2.07     (reduction of 34.86%)
+GDEF            12,085       1.97     7,929        1.91     (reduction of 34.39%)
+GlyphOrder      10,688       1.75     6,960        1.68     (reduction of 34.88%)
+post            9,727        1.59     285          0.07     (reduction of 97.07%)
+cvt             8,272        1.35     8,272        2.00                 
+prep            5,006        0.82     5,006        1.21                 
+name            2,141        0.35     216          0.05     (reduction of 89.91%)
+OS_2            1,754        0.29     1,754        0.42                 
+head            658          0.11     659          0.16                 
+maxp            579          0.09     579          0.14                 
+hhea            529          0.09     529          0.13                 
+GPOS            514          0.08     222          0.05     (reduction of 56.81%)
+gasp            116          0.02     116          0.03                 
+loca            65           0.01     65           0.02                 
+
+
+Testing NotoSerifThai-Regular.ttf over https://th.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSerifThai-Regular.ttf Analysis
+New size: 
+ttf: 29324 => 19224        (Reduction of 34.44%)
+ttx: 399412 => 277077      (Reduction of 30.63%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            187,875      50.16    125,985      48.25    (reduction of 32.94%)
+glyf(assemb)    72,565       19.37    47,919       18.35    (reduction of 33.96%)
+GPOS            44,638       11.92    34,779       13.32    (reduction of 22.09%)
+fpgm            24,685       6.59     24,685       9.45                 
+GSUB            8,362        2.23     5,483        2.10     (reduction of 34.43%)
+cmap            7,259        1.94     4,474        1.71     (reduction of 38.37%)
+GDEF            6,070        1.62     3,757        1.44     (reduction of 38.11%)
+hmtx            5,219        1.39     3,239        1.24     (reduction of 37.94%)
+GlyphOrder      4,229        1.13     2,633        1.01     (reduction of 37.74%)
+post            4,150        1.11     285          0.11     (reduction of 93.13%)
+cvt             2,423        0.65     2,423        0.93                 
+name            1,858        0.50     216          0.08     (reduction of 88.37%)
+OS_2            1,753        0.47     1,753        0.67                 
+prep            1,495        0.40     1,495        0.57                 
+head            660          0.18     660          0.25                 
+maxp            577          0.15     576          0.22     (reduction of 0.17%)
+hhea            529          0.14     528          0.20     (reduction of 0.19%)
+gasp            175          0.05     175          0.07                 
+loca            65           0.02     65           0.02                 
+
+
+Testing NotoSansKannada-Regular.ttf over https://kn.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansKannada-Regular.ttf Analysis
+New size: 
+ttf: 137096 => 116076      (Reduction of 15.33%)
+ttx: 1800972 => 1514937    (Reduction of 15.88%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            858,583      51.17    749,918      53.09    (reduction of 12.66%)
+glyf(assemb)    473,614      28.23    410,373      29.05    (reduction of 13.35%)
+GPOS            129,958      7.75     75,107       5.32     (reduction of 42.21%)
+GSUB            101,061      6.02     76,669       5.43     (reduction of 24.14%)
+fpgm            32,806       1.96     32,806       2.32                 
+hmtx            22,669       1.35     18,869       1.34     (reduction of 16.76%)
+GlyphOrder      18,478       1.10     15,375       1.09     (reduction of 16.79%)
+GDEF            18,417       1.10     16,397       1.16     (reduction of 10.97%)
+cmap            9,879        0.59     6,431        0.46     (reduction of 34.90%)
+prep            3,781        0.23     3,781        0.27                 
+cvt             2,665        0.16     2,665        0.19                 
+name            1,866        0.11     218          0.02     (reduction of 88.32%)
+OS_2            1,754        0.10     1,754        0.12                 
+head            660          0.04     660          0.05                 
+maxp            580          0.03     580          0.04                 
+hhea            529          0.03     529          0.04                 
+post            285          0.02     285          0.02                 
+gasp            116          0.01     116          0.01                 
+loca            65           0.00     65           0.00                 
+
+
+Testing NotoSansGujarati-Regular.ttf over https://gu.wikipedia.org/
+72x72dpi...  PASSED
+300x300dpi...  PASSED
+600x600dpi...  PASSED
+1200x1200dpi...  PASSED
+2400x2400dpi...  PASSED
+
+NotoSansGujarati-Regular.ttf Analysis
+New size: 
+ttf: 189980 => 137676      (Reduction of 27.53%)
+ttx: 2555695 => 1901447    (Reduction of 25.60%)
+
+Table           Size         Total%   New Size     Total%               
+glyf            772,183      32.73    667,346      37.30    (reduction of 13.58%)
+GSUB            573,556      24.31    338,103      18.90    (reduction of 41.05%)
+glyf(assemb)    537,689      22.79    445,171      24.88    (reduction of 17.21%)
+GPOS            270,479      11.47    203,108      11.35    (reduction of 24.91%)
+GDEF            83,653       3.55     48,925       2.73     (reduction of 41.51%)
+hmtx            37,245       1.58     21,562       1.21     (reduction of 42.11%)
+fpgm            32,806       1.39     32,806       1.83                 
+GlyphOrder      30,634       1.30     17,705       0.99     (reduction of 42.20%)
+cmap            10,623       0.45     6,164        0.34     (reduction of 41.97%)
+prep            2,188        0.09     2,188        0.12                 
+cvt             2,014        0.09     2,014        0.11                 
+name            1,918        0.08     219          0.01     (reduction of 88.58%)
+OS_2            1,752        0.07     1,752        0.10                 
+head            660          0.03     660          0.04                 
+maxp            579          0.02     579          0.03                 
+hhea            530          0.02     530          0.03                 
+post            285          0.01     285          0.02                 
+gasp            116          0.00     116          0.01                 
+loca            65           0.00     65           0.00                 
+
+
