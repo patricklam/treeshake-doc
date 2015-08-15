@@ -102,7 +102,7 @@ will be function labels.
 To obtain the function calls, we need to check the bytecode from every
 other table, including the bytecode of each glyph. Unlike function
 definitions, however, we can not obtain which labels are referred by each
-call instruction straightforwardly. That is because CALL instructions
+function call straightforwardly. That is because CALL instructions
 are not necessarily made after a PUSH instruction with the corresponding
 label function. The labels can be pushed to the stack anywhere in the
 bytecode, although they are usually pushed at the beginning of the
@@ -196,12 +196,12 @@ information about TTFont objects to execute tables of a font.
 \section{Disregarding unneeded functions}
 
 The tree shake starts by loading the font file as a TTFont object.
-It then create a bytecodeContainer object that encapsulates the main
-tables of a TrueType font file: prep, fpgm, cvt and glyf. This object 
-is necessary to run the abstract executor. We also create an empty set, 
-in which we will insert the labels of functions that were called at some 
-point during the execution. This set will be used later on to decide 
-which functions we want to keep on the font file.
+It then creates a bytecodeContainer object that encapsulates some of the 
+tables of a TrueType font file, including the prep, fpgm, cvt and glyf
+tables. This object is necessary to run the abstract executor. We also
+create an empty set, in which we will insert the labels of functions
+that were called at some point during the execution. This set will be
+used later on to decide which functions we want to keep on the font file.
 
 Whenever a font is loaded, prep is always the first table to run to 
 set the environment for glyphs to be loaded. Note that, whenever we run
@@ -211,7 +211,7 @@ We are interested here specifically in function calls made during the execution.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=180mm]{diagram.jpg}
+\includegraphics[height=100mm]{diagram.jpg}
 \caption{Tree shake diagram \label{overflow}}
 \end{figure}
 
@@ -277,7 +277,7 @@ reduction still averaged under 10 percent. For some fonts, like
 NotoSansSinhala-Regular.ttf, the difference in relative reduction
 between whole and subsetted font was less than 1 percent, and for fonts
 like NotoSansGeorgian-Regular.ttf, this difference jumped to more than
-10 percent. Appendix A contains detailed information about every font.
+10 percent. Appendix A contains detailed results for every font.
 
 These results give us some insight on how much the function program
 table affects the total size of the font, and more importantly, how
@@ -306,7 +306,7 @@ wild, which can be useful for further investigation of TrueType fonts.
 Possible future works include improvements on the tree shake such as
 identifying and removing duplicated functions from the font program
 table, as well as the inspection of the other tables to identify
-redudant bytecode or the search for new techniques to reduce these
+redundant bytecode or the search for new techniques to reduce these
 tables.
 
 \clearpage
