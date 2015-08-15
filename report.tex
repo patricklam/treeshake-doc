@@ -36,8 +36,9 @@ stack-based bytecode language.
 
 With the increasing popularity and spread of TrueType fonts, keeping
 them  minimal is a challenge due to the lack of optimizing techniques
-for its bytecode. Fonts embedded into websites or document files often
-incur in longer loading times on slow connections.
+for its bytecode. Websites or documents with embedded fonts would benefit
+from smaller font files, specially on mobile devices with network or
+memory limitations.
 
 TrueType fonts files in the wild often contain bytecode that is never
 executed. This work investigates how much we can shrink TrueType font
@@ -65,7 +66,7 @@ functions defined and all the function calls made during execution.
 Function definitions are located within the font program table in the
 form of stack based code. Since this table contains exclusively function
 definitions (e.g. no instructions other than function definition
-instructions are executed)  we can obtain and store their labels
+instructions are executed) we can obtain and store their labels
 straightforwardly. 
 
 \begin{figure}[ht!]
@@ -90,7 +91,6 @@ ENDF[ ]
 \end{verbatim}
 \caption{Example of a simple font program table}
 \end{figure}
-
 
 Figure 1 shows that by just inspecting the contents (data) of
 the PUSH instructions outside of FDEF-ENDF pairs, we can obtain all the
@@ -141,7 +141,6 @@ that, we make use of the Abstract Interpreter\cite{bytecode}. Abstract
 execution, provides information about the stack height and contents
 after each instruction, as well as every possible branch that can be
 executed, allowing us to make a list of function calls for each table. 
-
 
 \section{Background Information}
 
@@ -207,7 +206,7 @@ which functions we want to keep on the font file.
 Whenever a font is loaded, prep is always the first table to run to 
 set the environment for glyphs to be loaded. Note that, whenever we run
 a table through the Abstract Interpreter, the resulting context
-and information about the execution is store in the interpreter object.
+and information about the execution is stored in the interpreter object.
 We are interested here specifically in function calls made during the execution.
 
 \begin{figure}[ht!]
@@ -231,11 +230,10 @@ by that font.
 The third and last step is obtaining the labels of the functions
 to be removed (by subtracting the functions called from the list of
 functions available in the fpgm table of the font). With them, we update
-the bytecodeContainer object - removing the functions passed - and
+the bytecodeContainer object --- removing the functions passed --- and
 translate the contents of bytecodeContainer back to the TTFont object. 
 With that done, the TTFont object is ready to generate a reduced
 tree shaken font.
-
 
 \section{Testing}
 
@@ -249,7 +247,8 @@ a TrueType Font.
 To perform the comparison, we used the FreeType interpreter to render
 glyphs from both fonts (original and reduced) for each charmap present
 in the font. Detailed information about how the FreeType interpreter
-renders glyphs can be found at the FreeType Reference Manual \cite{freetypemanual}. 
+renders glyphs can be found at the FreeType Reference Manual
+\cite{freetypemanual}. 
 
 The script will compare the two fonts for a given set of glyphs at
 five popular dpi resolutions: 72x72, 300x300, 600x600, 1200x1200 and
@@ -272,18 +271,16 @@ fonts.
 
 The statistic show a slight variation between the reduction we obtained
 with the tree shaking technique for whole fonts and for subsetted fonts.
-On average, we are getting double the relative reduction when working
-with subsets. 
 
-Although we obtained a better reduction for subsetted fonts, the
-reduction we obtained was not very high (averaging under 10 percent). For
-some fonts, like NotoSansSinhala-Regular.ttf, the difference in relative
-reduction between whole and subsetted font was less than 1 percent, and
-for fonts like NotoSansGeorgian-Regular.ttf, this difference jumped to
-more than 10 percent. Appendix A contains detailed information about every font.
+Although we obtained a better relative reduction for subsetted fonts, the
+reduction still averaged under 10 percent. For some fonts, like
+NotoSansSinhala-Regular.ttf, the difference in relative reduction
+between whole and subsetted font was less than 1 percent, and for fonts
+like NotoSansGeorgian-Regular.ttf, this difference jumped to more than
+10 percent. Appendix A contains detailed information about every font.
 
 These results give us some insight on how much the function program
-table affects on the total size of the font, and more importantly, how
+table affects the total size of the font, and more importantly, how
 other tables contribute to the final size. We could observe that the
 reduction we obtained from just subsetting the fonts greatly
 varied, presenting reductions between 8 and 99 percent. The tree shaking
@@ -293,6 +290,24 @@ glyphs usually take the major part of whole fonts.
 
 Appendix B contains detailed information about how much each table takes
 in the Google Noto Sans font files before and after subsetting.
+
+\section{Conclusions and Future Work}
+
+The tree shake of the font program table of TrueType fonts helps to keep
+them minimal, which may be useful for further manipulations such as
+font merging. However, it proved to be not very efficient for size
+reduction.
+
+During our work, we had the chance to investigate the contents
+of TrueType fonts, including how much each table takes in the final size
+of the font. Our script can obtain such information from fonts in the
+wild, which can be useful for further investigation of TrueType fonts.
+
+Possible future works include improvements on the tree shake such as
+identifying and removing duplicated functions from the font program
+table, as well as the inspection of the other tables to identify
+redudant bytecode or the search for new techniques to reduce these
+tables.
 
 \clearpage
 \begin{appendices}
