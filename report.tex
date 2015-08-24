@@ -5,6 +5,7 @@
 \usepackage{listings}
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{url}
 \usepackage[toc,page]{appendix}
 
 \setlength{\parskip}{8pt}
@@ -30,33 +31,33 @@
 TrueType is an outline font standard desgined by Apple and Microsoft as
 a competitor to Adobe's Type 1 fonts. In TrueType fonts, each glyph is
 described by a set of outlines. To ensure excellent font rendering at typical
-screen resolutions, font hinting is often used to adjust the display of
-an outline. TrueType font hints are expressed in a TrueType-specific
+screen resolutions, font designers often include font hints to adjust the display of
+problematic outlines. TrueType font hints are expressed in a TrueType-specific
 stack-based bytecode language.
 
-With the increasing popularity and spread of TrueType fonts, keeping
-them  minimal is a challenge due to the lack of optimizing techniques
-for its bytecode. Websites or documents with embedded fonts would benefit
+Websites or documents with embedded fonts would benefit
 from smaller font files, specially on mobile devices with network or
-memory limitations.
+memory limitations. However, keeping
+font size minimal is a challenge due to the lack of optimizing techniques
+for its bytecode. 
 
 TrueType fonts files in the wild often contain bytecode that is never
 executed. This work investigates how much we can shrink TrueType font
-files if we remove some of this bytecode, specifically, unnecessary
+files if we remove some of this bytecode---specifically, unnecessary
 function definitions from the font program table.
 
 \section{Description}
 
 Our tree shaking tool reduces the font program table of a
 TrueType font by removing function definitions that are never called
-during execution. The output of the tree shake is a new font file with
-smaller size if any uncalled functions were identified during tree shaking.
+during execution. The output of the tree shake is a new font file, which will be
+smaller if our tree shaking tool manages to remove uncalled functions.
 
-The tree shake can be combined with subsetting techniques to achieve a
-better relative reduction from the original size of the font file. Font
-subsetting takes a font as input and produces a new font as output,
-containing only a subset of the glyphs from the original. It can be used
-for webpages or documents whose selection of glyphs remain static after
+The tree shake can be combined with subsetting techniques to achieve an
+even better relative reduction with respect to the original size of the font file. Font
+subsetting takes a font as input and produces a new font as output. The new font
+contains only a subset of the original font's glyphs. It can be used
+for documents whose selection of glyphs from a particular font remain static after
 initial rendering. Subsetting may also remove the need for functions
 used by specific glyphs.
 
@@ -65,11 +66,13 @@ functions defined and all the function calls made during execution.
 
 Function definitions are located within the font program table in the
 form of stack based code. Since this table contains exclusively function
-definitions (e.g. no instructions other than function definition
-instructions are executed) we can obtain and store their labels
-straightforwardly. 
+definitions (i.e. no instructions other than function definition
+instructions are executed) we can obtain and store function labels without
+any analysis.
 
 \begin{figure}[ht!]
+  \begin{center}
+  \begin{minipage}{.4\textwidth}
 \begin{verbatim}
 PUSH[ ]  /* 2 values pushed */
 2 1
@@ -89,26 +92,29 @@ ADD[ ]
 WCVTP[ ]
 ENDF[ ]
 \end{verbatim}
-\caption{Example of a simple font program table}
+  \end{minipage}
+  \end{center}
+\caption{A simple font program table containing definitions (FDEFs) for functions 1 and 2.}
 \end{figure}
 
-Figure 1 shows that by just inspecting the contents (data) of
-the PUSH instructions outside of FDEF-ENDF pairs, we can obtain all the
-function labels for a font file. Since the program font table only
-includes function definitions, we know that the only instructions to pop
-elements from the stack are FDEF instructions, and that these elements
+Specifically, Figure 1 shows that the contents (data) of
+the PUSH instructions outside of FDEF-ENDF pairs suffice to obtain all the
+function labels for a font file. Since the font program table only
+includes function definitions, the only instructions to pop
+elements from the stack will be FDEF instructions, and their operands
 will be function labels.
 
-To obtain the function calls, we need to check the bytecode from every
+To compute the set of functions called, we need to check the bytecode from every
 other table, including the bytecode of each glyph. Unlike function
-definitions, however, we can not obtain which labels are referred by each
-function call straightforwardly. That is because CALL instructions
-are not necessarily made after a PUSH instruction with the corresponding
-label function. The labels can be pushed to the stack anywhere in the
-bytecode, although they are usually pushed at the beginning of the
-execution. Since every instruction and function call can change the
-current state of the stack, when execution reaches a CALL instruction, we
-can not be sure about what is the current value at the top of the stack. 
+definitions, however, we cannot easily obtain which labels are referred to by each
+function call. That is because CALL instructions need not directly follow
+PUSH instructions. Callees can be pushed on the stack anywhere in the
+bytecode. Most often, they are pushed at the beginning of the
+execution. However, intervening instructions will of course change the state of the stack
+Moreover, intervening function calls can also change the current state of the stack---unlike
+in many other stack-based languages, there is no requirement to preserve stack height across
+function calls. Hence, when execution reaches a CALL instruction, the current value at the
+top of the stack is not obvious.
 
 \begin{figure}[ht!]
 \begin{verbatim}
@@ -120,13 +126,15 @@ PUSH[ ]
 CALL[ ]
 CALL[ ]
 \end{verbatim}
-\caption{Example of a program to be executed}
+\caption{TrueType bytecode which calls three functions: 93, 85 and ?.
+Unlike in other languages, the destination of the third call cannot be resolved
+without analyzing the first two callees.}
 \end{figure}
 
 Figure 2 shows a program with three function calls. The program
-initially pushes 3 values to the stack and make the first function call.
-We know for sure that the the first function call will refer to the
-function labelled 93 because this is the value at the top of the stack
+initially pushes 3 values to the stack and makes the first function call.
+The first function call will certainly resolve to
+function 93, the value at the top of the stack
 when the first CALL instruction is executed. The same goes for the
 second CALL instruction, as the value 85 is pushed immediately before
 it. However, for the third CALL instruction, we can not be sure about which
@@ -135,76 +143,71 @@ changed the state of the stack.
 
 Therefore, to identify function calls within the bytecode of other tables,
 we need to keep track of how many values are pushed and popped by each
-instruction and by each function called, so whenever a CALL instruction
-is made, we know what is the value at the top of the stack. To achieve
-that, we make use of the Abstract Interpreter\cite{bytecode}. Abstract
-execution, provides information about the stack height and contents
+instruction and by each function called. Then, whenever the bytecode invokes a CALL instruction,
+we can look up the value at the top of the stack. This requires the use of our
+Abstract Interpreter~\cite{bytecode}. Abstract
+execution provides information about the stack height and approximate contents
 after each instruction, as well as every possible branch that can be
-executed, allowing us to make a list of function calls for each table. 
+executed, allowing us to estimate a list of function calls for each table. 
 
-\section{Background Information}
+\section{Background}
 
-A TrueType font file is made of tables that contains data comprising an
-outline font. A compreehensive list of all the tables that can be
-present in a font file can be found in the Apple's TrueType Reference
-Manual\cite{ttmanual}. The tables that we are going to focus on this
-work are the fpgm, prep and glyf tables. The fpgm is the table that we
-are trying to reduce, which contains function definitions. The prep
+A TrueType font file describes an outline font using a set of data tables.
+Apple's TrueType Reference
+Manual~\cite{ttmanual} describes all permissible tables.
+In this work, we focus on the bytecode-containing fpgm, prep and glyf tables.
+We are trying to reduce the fpgm table, which contains function definitions. The prep
 table contains a set of instructions that are executed whenever the font
-is first accessed or when the font, point size or transformation matrix
-change. The glyf table contains information that describe glyphs in the
+is first accessed, or when the font, point size, or transformation matrix
+change. The glyf table describes glyphs in the
 TrueType outline format.
 
-To gather a general idea of how much size each table takes in the font
-file, we used the set of TrueType fonts Google Noto Sans\cite{notosans}
-to inspect the individual size of each table for a font file. For all
-fonts inspected, tables related to glyphs (e.g. glyf, GPOS, GSUB, etc)
-take together more than 50 percent of the total size of whole fonts,
-while the fpgm table never gets above 10 percent.  
+To roughly estimate the contribution of each table to overall font
+sizes, we used the Google Noto Sans~\cite{notosans} TrueType fonts as
+a benchmark. For all inspected fonts, glyph-related tables (e.g. glyf, GPOS, GSUB, etc)
+take together more than 50 percent of the total font size,
+while the fpgm table never exceeds 10 percent.  
 
 To perform the tree shaking on the font program table,
-we make use of related work focused on TrueType fonts, specifically,
-the TTFont class present in the fonttools project \cite{fonttools} 
-(an open source project) and a bytecode manipulation library
-\cite{bytecode} initiated by Wenzhu Man. 
+we use
+Wenzhu Man's bytecode manipulation library~\cite{bytecode}
+which builds on the open-source fonttools project~\cite{fonttools}.
 
-The TTFont class gives us easy access to the TrueType font format. It
+Fonttools provides a TTFont class, which gives us easy access to the TrueType font format. It
 allows us to extract data from the font tables, perform analysis on
-them, and even manipulate and save them back to the font. 
+them, and manipulate and save them back to the font. 
 
 To get information about rendered glyphs and make sure that
 our modifications do not cause any unexpected changes in the font file,
-we use the FreeType interpreter to load each glyph from the original
+we use the FreeType interpreter~\cite{freetype} to load each glyph from the original
 and reduced fonts at a given resolution and make sure they are exactly
 the same. 
 
 The Abstract Interpreter can be used to get information about the
-program's execution. During abstract execution, instructions do not
-return actual values, only abstract data. Although this kind of
-execution may offer some limitations compared to normal (concrete)
-interpretation, we can estimate  the program's control flow, including
-which kind of instructions and functions were called. The Abstract
-Interpreter does not run using a TTFont object itself, but instead the
-bytecodeContainer class, an intermediate class.
+program's execution. During abstract execution, instructions may return either
+actual values (if available) or abstract data (otherwise). Although this kind of
+execution provides less specific information about a specific execution than normal (concrete)
+interpretation, we have found that it gives enough information to estimate font programs' control flow, including
+which kind of instructions and functions were called.
 
-The bytecodeContainer class, as mentioned, is an intermediate of
-the TTFont class. It extracts some of the contents of the a font to make
-it more easily manipulable and allows translation back to a TTFont
-object. The Abstract Interpreter uses a bytecodeContainer, containing 
-information about TTFont objects to execute tables of a font.
+The Abstract
+Interpreter does not run using a TTFont object itself, but instead Wenzhu Man's
+intermediate bytecodeContainer class.
+The bytecodeContainer class makes font contents
+more easily manipulable and allows translation back to TTFont
+objects. The Abstract Interpreter uses the bytecodeContainer to execute font bytecodes.
 
-\section{Disregarding unneeded functions}
+\section{Removing unneeded functions}
 
-The tree shake starts by loading the font file as a TTFont object.
-It then creates a bytecodeContainer object that encapsulates some of the 
-tables of a TrueType font file, including the prep, fpgm, cvt and glyf
-tables. This object is necessary to run the abstract executor. We also
-create an empty set, in which we will insert the labels of functions
-that were called at some point during the execution. This set will be
-used later on to decide which functions we want to keep on the font file.
+The tree shaker starts by loading the font file as a TTFont object.
+It then creates a bytecodeContainer object that encapsulates some of
+the tables of a TrueType font file, including the prep, fpgm, cvt and
+glyf tables. This object is necessary to run the abstract executor. We
+also initialize the set of called functions with the empty set. This
+set will determine which functions we keep in the font file.
 
 Whenever a font is loaded, prep is always the first table to run to 
-set the environment for glyphs to be loaded. Note that, whenever we run
+set up the environment for glyphs to be loaded. Note that, whenever we run
 a table through the Abstract Interpreter, the resulting context
 and information about the execution is stored in the interpreter object.
 We are interested here specifically in function calls made during the execution.
@@ -217,40 +220,39 @@ We are interested here specifically in function calls made during the execution.
 
 The first step then is running the prep table through the Abstract 
 Interpreter. We make a copy of the post-prep environment (we want to be
-able to restore this initial state) and update our function label
+able to restore this initial state) and update our called function
 set with the functions called by prep. We now have everything ready to
 execute the remaining tables.
 
 The second step is running every glyph through the Abstract Interpreter.
 For each glyph we restore the execution context post-prep, execute the
-glyph and update function function call set with calls made during
+glyphs, and update the called function set with calls made during
 execution. Afterwards, we have all functions that can possibly be called
 by that font.
 
 The third and last step is obtaining the labels of the functions
 to be removed (by subtracting the functions called from the list of
-functions available in the fpgm table of the font). With them, we update
-the bytecodeContainer object --- removing the functions passed --- and
+functions defined in the font's fpgm table). With them, we update
+the bytecodeContainer object---removing the functions passed---and
 translate the contents of bytecodeContainer back to the TTFont object. 
 With that done, the TTFont object is ready to generate a reduced
-tree shaken font.
+tree-shaken font.
 
 \section{Testing}
 
-To verify that the tree shaking do not interfere with the
-renderization of any glyphs, we developed a script to compare glyphs
+To verify that the tree shaking does not affect the rendering of any glyphs,
+we developed a script to compare glyphs
 from two fonts and check if they are identical. While we are using this
-script to check if nothing wrong happened during the tree shaking, its
-use can be extended to any sort of modification applied to the glyphs of
+script to verify that nothing untoward happened during the tree shaking, it
+applies to any lossless modifications applied to the glyphs of
 a TrueType Font.
 
 To perform the comparison, we used the FreeType interpreter to render
-glyphs from both fonts (original and reduced) for each charmap present
+glyphs from both the original and reduced fonts for each charmap present
 in the font. Detailed information about how the FreeType interpreter
-renders glyphs can be found at the FreeType Reference Manual
-\cite{freetypemanual}. 
+renders glyphs can be found in the FreeType Reference Manual~\cite{freetypemanual}. 
 
-The script will compare the two fonts for a given set of glyphs at
+The script compares the two fonts for a given set of glyphs at
 five popular dpi resolutions: 72x72, 300x300, 600x600, 1200x1200 and
 2400x2400dpi. Depending on the number of glyphs to be fetched, and from
 where they have to be fetched from (file or URL), the test may take a
@@ -260,8 +262,8 @@ enconding can also be specified via parameter.
 \section{Results}
 
 To measure the results of our work, we performed the tree shaking
-technique on the Google Noto Sans fonts\cite{notosans}. To obtain a
-better insight on how much the font program table takes in the total
+technique on the Google Noto Sans fonts~\cite{notosans}. To obtain
+better insights on how much space the font program table takes in the total
 size of the font, we also applied the tree shaking on subsetted fonts
 (fetching glyphs from the initial Wikipedia page from the corresponding
 languages), to check against the reduction we obtained from the original
@@ -269,7 +271,7 @@ fonts.
 
 \verbatiminput{averageStats}
 
-The statistic show a slight variation between the reduction we obtained
+The statistics show a slight variation between the reduction we obtained
 with the tree shaking technique for whole fonts and for subsetted fonts.
 
 Although we obtained a better relative reduction for subsetted fonts, the
@@ -279,7 +281,7 @@ between whole and subsetted font was less than 1 percent, and for fonts
 like NotoSansGeorgian-Regular.ttf, this difference jumped to more than
 10 percent. Appendix A contains detailed results for every font.
 
-These results give us some insight on how much the function program
+These results give us some insights on how much the function program
 table affects the total size of the font, and more importantly, how
 other tables contribute to the final size. We could observe that the
 reduction we obtained from just subsetting the fonts greatly
@@ -293,7 +295,7 @@ in the Google Noto Sans font files before and after subsetting.
 
 \section{Conclusions and Future Work}
 
-The tree shake of the font program table of TrueType fonts helps to keep
+Tree shaking of font program tables of TrueType fonts helps to keep
 them minimal, which may be useful for further manipulations such as
 font merging. However, it proved to be not very efficient for size
 reduction.
@@ -315,23 +317,22 @@ tables.
 
 \verbatiminput{generalStats}
 
-\section{Table Statatistics}
+\section{Table Statistics}
 
 To understand better how much the subsetting technique would affect
 fonts in the wild, we inspected the size of each table before and after
 subsetting.
 
 To get information about the size of the tables, we used the TTX tool
-from the fonttools project, to dump the font file into an XML file. With
-an XML file, we were able to count the number of bytes of each table.
+from the fonttools project to dump the font file into an XML file. With
+an XML file, we were able to count the number of bytes in each table.
 
 Note that the information we get about sizes are not exact. The size
-between the XML file and the original font file may differ, however, as the
-results show, this difference is usually reasonably low. Moreover, we
+between the XML file and the original font file may differ (by a constant factor). Moreover, we
 are interested in understanding the relative size of a table when
 compared to the other tables in the font. So, even though we are not
-getting precise values from an XML file, it is still enough for
-understanding how tables compare between each other.
+getting precise values from the XML, it is still enough for
+understanding how tables compare.
 
 To make sure the glyphs would be rendered the same way as the original
 fonts, we used the compare script to check for equality between original
@@ -344,19 +345,21 @@ and subsetted for the set of fetched glyphs.
 \clearpage
 \begin{thebibliography}{1}
 
-\bibitem{fonttools} The fonttools project. {\em https://github.com/behdad/fonttools } 
+\bibitem{ttmanual} Apple Inc. TrueType Reference Manual. 
+\url{https://developer.apple.com/fonts/TrueType-Reference-Manual/} 
 
-\bibitem{bytecode} TrueType bytecode manipulation library. 
-{\em https://github.com/wenzhuman/fonttools } 
+\bibitem{bytecode} Wenzhu Man. TrueType bytecode manipulation library. 
+\url{https://github.com/wenzhuman/fonttools} 
 
-\bibitem{ttmanual} TrueType Reference Manual. 
-{\em https://developer.apple.com/fonts/TrueType-Reference-Manual/ } 
+\bibitem{freetype} The FreeType project. \url{http://www.freetype.org}
+
+\bibitem{fonttools} The fonttools project. \url{https://github.com/behdad/fonttools} 
 
 \bibitem{freetypemanual} FreeType Documentation.
-{\em http://www.freetype.org/freetype2/docs/documentation.html }
+\url{http://www.freetype.org/freetype2/docs/documentation.html}
 
 \bibitem{notosans} Google Noto Sans. 
-{\em https://www.google.com/fonts/specimen/Noto+Sans } 
+\url{https://www.google.com/fonts/specimen/Noto+Sans} 
 
 \end{thebibliography}
 
